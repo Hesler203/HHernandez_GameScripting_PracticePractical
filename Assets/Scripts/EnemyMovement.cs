@@ -2,15 +2,24 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Transform target;
+    private Rigidbody rb;
+    private float speed;
+
+    public void InitializeTarget(Transform playerPosition)
     {
-        
+        target = playerPosition;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        MoveToTarget();
+    }
+
+    private void MoveToTarget()
+    {
+        speed = (int)GetComponent<EnemyController>().enemyStats.Item2;
+        rb = GetComponent<Rigidbody>();
+        rb.AddForce(target.position.normalized * speed, ForceMode.Acceleration);
     }
 }

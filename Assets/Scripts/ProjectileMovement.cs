@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class ProjectileMovement : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Rigidbody rb;
+    [SerializeField] private float speed = 20f;
+
     void Start()
     {
-        
+        rb.GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        rb.AddRelativeForce(Vector3.forward * speed, ForceMode.VelocityChange);
     }
 }
